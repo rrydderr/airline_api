@@ -31,26 +31,18 @@ public class FlightService {
     }
 
     //add passenger to flight
-    public Flight addPassengerToFlight(Long passengerId, Long flightId) {
+    public void addPassengerToFlight(Long flightId, Passenger passenger) {
         Flight flight = flightRepository.findById(flightId).get();
-        Passenger passenger = passengerRepository.findById(passengerId).get();
-        if (flight != null && passenger != null) {
-            {
-                List<Passenger> passengers = flight.getPassengers();
-                passengers.add(passenger);
-                flight.setPassengers(passengers);
-            }
-            return flightRepository.save(flight);
-
-        } else {
-            return null;
-        }
+        List<Passenger> passengers = flight.getPassengers();
+        passengers.add(passenger);
+        flight.setPassengers(passengers);
+        flightRepository.save(flight);
     }
 
 
     //delete flight
     public void deleteFlight(Long id) {
-        Flight flight = flightRepository.findById(id).orElse(null);
+        Flight flight = flightRepository.findById(id).get();
         if (flight != null) {
             List<Passenger> passengers = flight.getPassengers();
             for (Passenger passenger : passengers) {
@@ -62,3 +54,20 @@ public class FlightService {
 
     }
 }
+
+//add passenger to flight
+//    public Flight addPassengerToFlight(Long passengerId, Long flightId) {
+//        Flight flight = flightRepository.findById(flightId).get();
+//        Passenger passenger = passengerRepository.findById(passengerId).get();
+//        if (flight != null && passenger != null) {
+//            {
+//                List<Passenger> passengers = flight.getPassengers();
+//                passengers.add(passenger);
+//                flight.setPassengers(passengers);
+//            }
+//            return flightRepository.save(flight);
+//
+//        } else {
+//            return null;
+//        }
+//    }

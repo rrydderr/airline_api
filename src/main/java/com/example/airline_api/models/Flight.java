@@ -33,6 +33,8 @@ public class Flight {
         this.passengers = new ArrayList<>();
     }
 
+    public void addPassenger(Passenger passenger){this.passengers.add(passenger);}
+    public void removePassenger(Passenger passenger){this.passengers.remove(passenger);}
     public Flight() {
     }
 

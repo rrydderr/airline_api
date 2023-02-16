@@ -42,8 +42,9 @@ public class FlightController {
 
     // Book passenger on a flight
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Flight> addPassengerToFlight(@PathVariable long id, @RequestBody Flight flight){
-        return null;
+    public ResponseEntity<Flight> addPassengerToFlight(@RequestBody Flight flight, Passenger passenger, @PathVariable long id){
+        flightService.addPassengerToFlight(id, passenger);
+        return new ResponseEntity<>(flight, HttpStatus.OK);
     }
 
     // Cancel flight
