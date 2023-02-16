@@ -1,4 +1,5 @@
 package com.example.airline_api.models;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -21,9 +22,15 @@ public class Flight {
     @Column
     private String departureTime;
 
+
+    @ManyToMany
+    @JoinTable(name = "passengers_flights",
+            joinColumns = @JoinColumn(name = "flight_id"),
+            inverseJoinColumns = @JoinColumn(name = "passenger_id")
+    )
     @JsonIgnoreProperties({"flights"})
-    @ManyToMany(mappedBy = "flights")
     private List<Passenger> passengers;
+
 
     public Flight(String destination, int capacity, String departureDate, String departureTime) {
         this.destination = destination;
@@ -33,8 +40,14 @@ public class Flight {
         this.passengers = new ArrayList<>();
     }
 
-    public void addPassenger(Passenger passenger){this.passengers.add(passenger);}
-    public void removePassenger(Passenger passenger){this.passengers.remove(passenger);}
+    public void addPassenger(Passenger passenger) {
+        this.passengers.add(passenger);
+    }
+
+    public void removePassenger(Passenger passenger) {
+        this.passengers.remove(passenger);
+    }
+
     public Flight() {
     }
 
