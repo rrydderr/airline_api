@@ -18,19 +18,19 @@ public class PassengerController {
 
     // Display details of all passengers
     @GetMapping
-    public ResponseEntity<List<Passenger>> getAllPassengers(){
+    public ResponseEntity<List<Passenger>> getAllPassengers() {
         return new ResponseEntity<>(passengerService.findAllPassengers(), HttpStatus.OK);
     }
 
     // Display specific passenger details
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Passenger> getPassengerById(Long id){
+    public ResponseEntity<Passenger> getPassengerById(Long id) {
         return new ResponseEntity<>(passengerService.findPassengerById(id), HttpStatus.OK);
     }
 
     // Add a new passenger
     @PatchMapping
-    public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger){
+    public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger) {
         passengerService.savePassenger(passenger);
         return new ResponseEntity<>(passenger, HttpStatus.CREATED);
     }
