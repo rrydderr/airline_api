@@ -1,4 +1,5 @@
 package com.example.airline_api.models;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +10,10 @@ public class Passenger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
-    @Column(name = "email_address")
+    @Column
     private String email;
 
     @ManyToMany

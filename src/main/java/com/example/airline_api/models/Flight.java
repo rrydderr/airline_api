@@ -11,18 +11,18 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column (name = "destination")
+    @Column
     private String destination;
-    @Column(name = "capacity")
+    @Column
     private int capacity;
-    @Column(name = "departure_date")
+    @Column
     private String departureDate;
 
-    @Column(name = "departure_time")
+    @Column
     private String departureTime;
 
-    @ManyToMany(mappedBy = "passengers")
-    @JsonIgnoreProperties("passengers")
+    @JsonIgnoreProperties({"flights"})
+    @ManyToMany(mappedBy = "flights")
     private List<Passenger> passengers;
 
     public Flight(String destination, int capacity, String departureDate, String departureTime) {
