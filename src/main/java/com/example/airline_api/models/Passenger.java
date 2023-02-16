@@ -16,7 +16,7 @@ public class Passenger {
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "passengers_flight",
+    @JoinTable(name = "passengers_flights",
             joinColumns = @JoinColumn(name = "passenger_id"),
             inverseJoinColumns = @JoinColumn(name = "flight_id")
     )
